@@ -7,6 +7,7 @@ import { HelloWorldComponent } from './hello-world/hello-world.component';
 import { DateComponent } from './date/date.component';
 import { AddressCardComponent } from './address-card/address-card.component';
 import { FormsModule } from '@angular/forms';
+import { ViewModule } from './view/view.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
