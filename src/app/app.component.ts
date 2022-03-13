@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { User } from './address-card/user.model';
 import { TestService } from './test.service';
@@ -10,22 +11,13 @@ import { TestService } from './test.service';
 
 export class AppComponent {
 
-  user: User;
-
-  constructor(private svc: TestService) {
-
+  constructor(private svc: TestService, private Http: HttpClient) {
     svc.printToConsole('Got the Test Service.');
-
-    this.user = new User();
-    this.user.name = 'Foo Bar';
-    this.user.designation = 'Software Engineer';
-    this.user.address = '1000 Street City State';
-    this.user.phone = [
-      '123 456 7890',
-      '123 456 7890'
-    ];
   }
 
-  inputText: string = "initial value";
-  title = 'angular-sample-app';
+  ngOnInit() {
+    let obs = this.Http.get('https://api.github.com/users/manishthakur');
+    obs.subscribe((response) => console.log(response));
+  }
+
 }

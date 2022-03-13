@@ -1,3 +1,4 @@
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { TestService } from 'src/app/test.service';
 
@@ -8,11 +9,19 @@ import { TestService } from 'src/app/test.service';
 })
 export class ViewComponentComponent implements OnInit {
 
-  constructor(private svc: TestService) {
-    svc.printToConsole('Log message from view component.');
+  userName: string = "";
+  response: any;
+
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
+  }
+
+  search() {
+    let obs = this.http.get('https://api.github.com/users/' + this.userName)
+      .subscribe((response) => this.response = response);
+    console.log(this.response);
   }
 
 }
